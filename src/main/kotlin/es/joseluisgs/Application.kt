@@ -33,7 +33,7 @@ private fun Application.initRoutes(presentacion: String, mode: String) {
         }
         get("/user") {
             val user = User(1, "Pepe", "Perez")
-            val data = mapOf("user" to user, "title" to "Ktor con Mustache")
+            val data = mapOf("user" to user, "pageTitle" to "User")
             call.respond(MustacheContent("user.hbs", data))
         }
     }
