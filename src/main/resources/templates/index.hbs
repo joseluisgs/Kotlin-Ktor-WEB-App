@@ -1,0 +1,62 @@
+{{> header.hbs }}
+<!-- ENCABEZADO -->
+
+
+<section class="section">
+    <div class="container">
+        <h1 class="title">Empleados</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th><abbr title="ID">ID</abbr></th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Ciudad</th>
+                <th>Avatar</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="is-vcentered">1</td>
+                <td class="is-vcentered">John Doe</td>
+                <td class="is-vcentered">john@gmail.com</td>
+                <td class="is-vcentered">New York</td>
+                <td class="is-vcentered">
+                    <figure class="image is-64x64">
+                        <img class="is-rounded" src="https://api.lorem.space/image/face?w=150&h=150">
+                    </figure>
+                </td>
+                <td class="is-vcentered">
+                    <a href="/employee?action=edit&id=${emp.id}" class="button is-warning mr-2 mr-2">
+                        <span class="icon is-small">
+                            <i class="mdi mdi-account-edit"></i>
+                        </span>
+                        <span>Editar</span>
+                    </a>
+                    <a href="/delete?id=${emp.id}" class="button is-danger mr-2">
+                        <span class="icon is-small">
+                            <i class="mdi mdi-account-remove"></i>
+                        </span>
+                        <span>Eliminar</span>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="container">
+            <div class="columns">
+                <a href="/employee?action=new" class="button is-primary">
+                     <span class="icon is-small">
+                            <i class="mdi mdi-account-plus"></i>
+                        </span>
+                    <span>Nuevo</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+{{> footer.hbs }}

@@ -83,6 +83,13 @@ object DataBaseManager {
                 "ana@lopez.es",
                 "Madrid",
                 "https://api.lorem.space/image/face?w=150&h=150"
+            ),
+            Employee(
+                3,
+                "Chuck Norris",
+                "tedoydos@ynolocuentas.es",
+                "Texas",
+                "https://api.lorem.space/image/face?w=150&h=150"
             )
         )
         employees.forEach {

@@ -3,6 +3,8 @@ package es.joseluisgs
 import com.github.mustachejava.DefaultMustacheFactory
 import es.joseluisgs.controllers.DataBaseManager
 import es.joseluisgs.models.User
+import es.joseluisgs.routes.employeesRoutes
+import es.joseluisgs.routes.webRoutes
 import io.ktor.application.*
 import io.ktor.mustache.*
 import io.ktor.response.*
@@ -31,6 +33,7 @@ fun Application.module() {
  */
 private fun Application.initRoutes(presentacion: String, mode: String) {
     routing {
+        // Rutas demo
         // Entrada en la api
         get("/test") {
             call.respondText("$presentacion en modo $mode")
@@ -40,6 +43,9 @@ private fun Application.initRoutes(presentacion: String, mode: String) {
             val data = mapOf("user" to user, "pageTitle" to "User")
             call.respond(MustacheContent("user.hbs", data))
         }
+        // Rutas de la aplicación
+        webRoutes()
+        employeesRoutes()
     }
 }
 
