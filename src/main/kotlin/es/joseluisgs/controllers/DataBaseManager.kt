@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import es.joseluisgs.entities.EmployeesTable
 import es.joseluisgs.models.Employee
+import es.joseluisgs.repositories.EmployeesRepository
 import mu.KotlinLogging
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
@@ -68,7 +69,7 @@ object DataBaseManager {
     }
 
     private fun initDataEmployees() = transaction {
-        val employees = listOf<Employee>(
+        val employees = listOf(
             Employee(
                 1,
                 "Pepe Perez",
@@ -84,6 +85,9 @@ object DataBaseManager {
                 "https://api.lorem.space/image/face?w=150&h=150"
             )
         )
+        employees.forEach {
+            EmployeesRepository.save(it)
+        }
         logger.info { "Employees de ejemplo insertados" }
     }
 }
