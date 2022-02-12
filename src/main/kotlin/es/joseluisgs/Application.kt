@@ -1,12 +1,29 @@
 package es.joseluisgs
 
 import io.ktor.application.*
-import es.joseluisgs.plugins.*
+import io.ktor.response.*
+import io.ktor.routing.*
+import io.ktor.server.cio.*
 
-fun main(args: Array<String>): Unit =
-    io.ktor.server.cio.EngineMain.main(args)
+fun main(args: Array<String>) = EngineMain.main(args)
 
-@Suppress("unused") // application.conf references the main function. This annotation prevents the IDE from marking it as unused.
 fun Application.module() {
-    configureRouting()
+    val presentacion = environment.config.propertyOrNull("mensajes.presentacion")?.getString() ?: "Hola Kotlin"
+    val mode = environment.config.property("ktor.environment").getString()
+
+    // Comenzamos a registrar las rutas
+    initRoutes(presentacion, mode)
+    
+}
+
+/**
+ * Rutas principales del Servicio
+ */
+private fun Application.initRoutes(presentacion: String, mode: String) {
+    routing {
+        // Entrada en la api
+        get("/test") {
+            call.respondText("$presentacion en modo $mode")
+        }
+    }
 }
