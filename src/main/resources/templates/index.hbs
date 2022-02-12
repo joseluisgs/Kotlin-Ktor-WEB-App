@@ -5,46 +5,56 @@
 <section class="section">
     <div class="container">
         <h1 class="title">Empleados</h1>
-        <table class="table">
-            <thead>
-            <tr>
-                <th><abbr title="ID">ID</abbr></th>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Ciudad</th>
-                <th>Avatar</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td class="is-vcentered">1</td>
-                <td class="is-vcentered">John Doe</td>
-                <td class="is-vcentered">john@gmail.com</td>
-                <td class="is-vcentered">New York</td>
-                <td class="is-vcentered">
-                    <figure class="image is-64x64">
-                        <img class="is-rounded" src="https://api.lorem.space/image/face?w=150&h=150">
-                    </figure>
-                </td>
-                <td class="is-vcentered">
-                    <a href="/employee?action=edit&id=${emp.id}" class="button is-warning mr-2 mr-2">
-                        <span class="icon is-small">
+        {{#exists}}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Ciudad</th>
+                    <th>Avatar</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                {{#employees}}
+                        <td class="is-vcentered">{{id}}</td>
+                        <td class="is-vcentered">{{name}}</td>
+                        <td class="is-vcentered">{{email}}</td>
+                        <td class="is-vcentered">{{city}}</td>
+                        <td class="is-vcentered">
+                            <figure class="image is-64x64">
+                                <img class="is-rounded" src="{{image}}">
+                            </figure>
+                        </td>
+                        <td class="is-vcentered">
+                            <a href="/employee?action=edit&id={{id}}" class="button is-warning mr-2 mr-2">
+                            <span class="icon is-small">
                             <i class="mdi mdi-account-edit"></i>
-                        </span>
-                        <span>Editar</span>
-                    </a>
-                    <a href="/delete?id=${emp.id}" class="button is-danger mr-2">
-                        <span class="icon is-small">
-                            <i class="mdi mdi-account-remove"></i>
-                        </span>
-                        <span>Eliminar</span>
-                    </a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <div class="container">
+                            </span>
+                            <span>Editar</span>
+                            </a>
+                            <a href="/delete?id={{id}}" class="button is-danger mr-2">
+                            <span class="icon is-small">
+                                <i class="mdi mdi-account-remove"></i>
+                            </span>
+                            <span>Eliminar</span>
+                            </a>
+                        </td>
+                    </tr>
+                {{/employees}}
+                </tbody>
+            </table>
+        {{/exists}}
+
+
+        {{^exists}}
+            <p class="subtitle is-4 py-3">No hay empleados</p>
+        {{/exists}}
+
+        <div class="container pt-2">
             <div class="columns">
                 <a href="/employee?action=new" class="button is-primary">
                      <span class="icon is-small">

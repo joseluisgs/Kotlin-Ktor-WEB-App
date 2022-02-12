@@ -1,5 +1,6 @@
 package es.joseluisgs.routes
 
+import es.joseluisgs.repositories.EmployeesRepository
 import io.ktor.application.*
 import io.ktor.mustache.*
 import io.ktor.response.*
@@ -17,7 +18,13 @@ fun Route.employeesRoutes() {
     route("/") {
         // GET /rest/customers/
         get {
-            val data = mapOf("pageTitle" to "User")
+            val employees = EmployeesRepository.getAll()
+            val exists = employees.isNotEmpty()
+            val data = mapOf(
+                "pageTitle" to "Employees",
+                "employees" to employees,
+                "exists" to exists
+            )
             call.respond(MustacheContent("index.hbs", data))
         }
     }
