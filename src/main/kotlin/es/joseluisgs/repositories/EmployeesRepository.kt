@@ -31,7 +31,7 @@ object EmployeesRepository : CrudRepository<Employee, Int> {
         return@transaction true
     }
 
-    override fun save(entity: Employee) {
+    override fun save(entity: Employee) = transaction {
         entity.id = Employees.new {
             name = entity.name
             email = entity.email

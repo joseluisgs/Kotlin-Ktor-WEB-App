@@ -1,0 +1,49 @@
+{{> header.hbs }}
+<!-- ENCABEZADO -->
+
+<section class="section">
+    <div class="container">
+        <h1 class="title">Formulario de Empleado</h1>
+        <form action="/employee" method="post">
+
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                    <input class="input" type="text" id="name" name="name" placeholder="Introduzca nombre" required
+                           value="{{employee.name}}">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                    <input class="input" type="email" id="email" name="email" placeholder="Introduzca email" required
+                           value="{{employee.email}}">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Ciudad</label>
+                <div class="control">
+                    <input class="input" type="text" id="city" name="city" placeholder="Introduzca ciudad" required
+                           value="{{employee.city}}">
+                </div>
+            </div>
+
+            <!-- Campos ocultos -->
+            <input type="hidden" id="action" name="action" value="{{action}}">
+            <input type="hidden" id="id" name="id" value="{{employee.id}}">
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button is-link">Aceptar</button>
+                </div>
+                <div class="control">
+                    <button type="reset" class="button is-link is-light">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- FOOTER -->
+{{> footer.hbs }}

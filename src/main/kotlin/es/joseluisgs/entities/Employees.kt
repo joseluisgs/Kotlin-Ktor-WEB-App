@@ -10,7 +10,7 @@ import org.jetbrains.exposed.sql.javatime.datetime
 // Tabla de Empleados
 object EmployeesTable : IntIdTable() {
     val name = varchar("name", 100).index()
-    val email = varchar("email", 50).uniqueIndex()
+    val email = varchar("email", 50).index()
     val city = varchar("city", 50)
     val image = varchar("image", 100)
     val createdAt = datetime("created_at")
