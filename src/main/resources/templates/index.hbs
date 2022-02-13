@@ -4,6 +4,13 @@
 
 <section class="section">
     <div class="container">
+        {{#notification}}
+            <div class="notification {{type}} is-light">
+                <button class="delete info"></button>
+                {{text}}
+            </div>
+        {{/notification}}
+
         <h1 class="title">Empleados</h1>
         {{#exists}}
             <table class="table">
@@ -49,9 +56,11 @@
             </table>
         {{/exists}}
 
-
         {{^exists}}
-            <p class="subtitle is-4 py-3">No hay empleados</p>
+            <div class="notification is-info is-light">
+                <button class="delete info"></button>
+                No hay empleados. Por favor inserta uno.
+            </div>
         {{/exists}}
 
         <div class="container pt-2">

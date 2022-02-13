@@ -14,6 +14,7 @@ fun Application.webRoutes() {
 // Vamos a crear una ruta web, para ello usamos una función de extensión de la clase Router
 // La llamamos webContent y le decimos el contenido que queremos que se muestre
 fun Route.webRoutes() {
+
     // Contenido estático, desde la carpeta resources cuando entran a /web
     static {
         // Si nos preguntan por /web desde la raíz, le mandamos el contenido estático. tambien aplicamos redireccion
