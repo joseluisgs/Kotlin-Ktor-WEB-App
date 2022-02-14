@@ -29,6 +29,12 @@ Para más información de cómo usar Ktor, puedes consultar mi anterior proyecto
 
 ![ktor](./images/image02.png)
 
+![ktor](./images/image03.png)
+
+![ktor](./images/image04.png)
+
+![ktor](./images/image05.png)
+
 
 ## Autor
 
