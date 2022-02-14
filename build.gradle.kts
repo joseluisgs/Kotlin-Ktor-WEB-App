@@ -47,6 +47,8 @@ dependencies {
     implementation("io.github.microutils:kotlin-logging-jvm:2.1.20")
     // Mustache para Ktor
     implementation("io.ktor:ktor-mustache:$ktor_version")
+    // Sesiones para Ktor
+    implementation("io.ktor:ktor-server-sessions:$ktor_version")
 
     // Utilizades para test
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")

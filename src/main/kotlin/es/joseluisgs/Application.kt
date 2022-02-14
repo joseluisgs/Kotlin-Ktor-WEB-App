@@ -2,6 +2,7 @@ package es.joseluisgs
 
 import com.github.mustachejava.DefaultMustacheFactory
 import es.joseluisgs.controllers.DataBaseManager
+import es.joseluisgs.entities.UserSession
 import es.joseluisgs.models.User
 import es.joseluisgs.routes.employeesRoutes
 import es.joseluisgs.routes.webRoutes
@@ -10,6 +11,7 @@ import io.ktor.mustache.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.server.cio.*
+import io.ktor.sessions.*
 
 fun main(args: Array<String>) = EngineMain.main(args)
 
@@ -22,6 +24,9 @@ fun Application.module() {
 
     // Iniciamos Mustache
     initMustache()
+
+    // Iniciamos las sesiones
+    initSessions()
 
     // Comenzamos a registrar las rutas
     initRoutes(presentacion, mode)
@@ -69,5 +74,12 @@ private fun Application.initMustache() {
     install(Mustache) {
         // Indicamos donde está el directorio de plantillas
         mustacheFactory = DefaultMustacheFactory("templates")
+    }
+}
+
+
+private fun Application.initSessions() {
+    install(Sessions) {
+        cookie<UserSession>("user_session")
     }
 }

@@ -1,5 +1,6 @@
 package es.joseluisgs.routes
 
+import es.joseluisgs.entities.UserSession
 import es.joseluisgs.models.Employee
 import es.joseluisgs.models.Notification
 import es.joseluisgs.repositories.EmployeesRepository
@@ -9,6 +10,7 @@ import io.ktor.mustache.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import io.ktor.sessions.*
 
 // Aplicamos las rutas a la aplicacion, extendiendo su routing
 fun Application.employeesRoutes() {
@@ -22,14 +24,33 @@ fun Route.employeesRoutes() {
     route("/") {
         // GET /rest/customers/
         get {
+            lateinit var userSession: UserSession
+            try {
+                userSession = call.sessions.get<UserSession>()!!
+                call.sessions.set(userSession.copy(count = userSession.count + 1))
+            } catch (e: Exception) {
+                call.sessions.set(UserSession(id = "123abc", count = 1))
+                userSession = call.sessions.get<UserSession>()!!
+            }
+
             val employees = EmployeesRepository.getAll()
             val exists = employees.isNotEmpty()
             val data = mapOf(
                 "pageTitle" to "Empleados",
                 "employees" to employees,
-                "exists" to exists
+                "exists" to exists,
+                "count" to userSession.count
             )
             call.respond(MustacheContent("index.hbs", data))
+        }
+        get("/login") {
+            call.sessions.set(UserSession(id = "123abc", count = 1))
+            call.respondRedirect("/")
+        }
+
+        get("/logout") {
+            call.sessions.clear<UserSession>()
+            call.respondRedirect("/")
         }
     }
     route("/delete") {
