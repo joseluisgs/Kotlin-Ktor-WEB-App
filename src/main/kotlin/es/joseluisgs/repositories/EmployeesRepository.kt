@@ -25,6 +25,7 @@ object EmployeesRepository : CrudRepository<Employee, Int> {
         employee.apply {
             name = entity.name
             email = entity.email
+            city = entity.city
             image = entity.image
         }
         entity.id = id

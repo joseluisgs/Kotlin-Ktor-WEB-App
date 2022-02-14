@@ -1,6 +1,7 @@
 package es.joseluisgs.routes
 
 import es.joseluisgs.models.Employee
+import es.joseluisgs.models.Notification
 import es.joseluisgs.repositories.EmployeesRepository
 import io.ktor.application.*
 import io.ktor.http.*
@@ -37,7 +38,7 @@ fun Route.employeesRoutes() {
             val id = call.request.queryParameters["id"]
             if (id != null) {
                 EmployeesRepository.delete(id.toInt())
-                /*val employees = EmployeesRepository.getAll()
+                val employees = EmployeesRepository.getAll()
                 val exists = employees.isNotEmpty()
                 val notification = Notification("is-danger", "Se ha eliminado correctamente el empleado con ID: $id")
                 val data = mapOf(
@@ -46,8 +47,9 @@ fun Route.employeesRoutes() {
                     "exists" to exists,
                     "notification" to notification
                 )
-                call.respond(MustacheContent("index.hbs", data))*/
-                call.respondRedirect("/")
+                call.respondTemplate("index.hbs", data)
+                // Si queremos forzar el cambio de URL
+                // call.respondRedirect("/")
             }
         }
     }
@@ -90,7 +92,7 @@ fun Route.employeesRoutes() {
                         postParameters["city"] ?: ""
                     )
                     EmployeesRepository.save(employee)
-                    /*val employees = EmployeesRepository.getAll()
+                    val employees = EmployeesRepository.getAll()
                     val exists = employees.isNotEmpty()
                     val notification =
                         Notification("is-success", "Se ha guardado correctamente el empleado ${employee.name}")
@@ -99,9 +101,10 @@ fun Route.employeesRoutes() {
                         "notification" to notification,
                         "employees" to employees,
                         "exists" to exists
-                    )*/
-                    call.respondRedirect("/")
-                    // call.respond(MustacheContent("index.hbs", data))
+                    )
+                    // Si queremos forzar el cambio de URL
+                    //call.respondRedirect("/")
+                    call.respondTemplate("index.hbs", data)
                 }
                 "edit" -> {
                     val id = postParameters["id"]
@@ -114,14 +117,19 @@ fun Route.employeesRoutes() {
                             postParameters["city"] ?: ""
                         )
                         EmployeesRepository.update(id.toInt(), employee)
-                        /*  val notification =
-                              Notification("is-warning", "Se ha actualizado correctamente el empleado ${employee.name}")
-                          val data = mapOf(
-                              "pageTitle" to "Employees",
-                              "notification" to notification
-                          )
-                          call.respond(MustacheContent("index.hbs", data))*/
-                        call.respondRedirect("/")
+                        val employees = EmployeesRepository.getAll()
+                        val exists = employees.isNotEmpty()
+                        val notification =
+                            Notification("is-warning", "Se ha actualizado correctamente el empleado ${employee.name}")
+                        val data = mapOf(
+                            "pageTitle" to "Employees",
+                            "notification" to notification,
+                            "employees" to employees,
+                            "exists" to exists
+                        )
+                        call.respondTemplate("index.hbs", data)
+                        // Si queremos forzar el cambio de URL
+                        // call.respondRedirect("/")
                     }
                 }
             }

@@ -25,6 +25,11 @@ El proyecto consiste en realizar una sencilla aplicación web que genera página
 
 Para más información de cómo usar Ktor, puedes consultar mi anterior proyecto [Kotlin-Ktor-REST-Service](https://github.com/joseluisgs/Kotlin-Ktor-REST-Service).
 
+![ktor](./images/image01.png)
+
+![ktor](./images/image02.png)
+
+
 ## Autor
 
 Codificado con :sparkling_heart: por [José Luis González Sánchez](https://twitter.com/joseluisgonsan)
